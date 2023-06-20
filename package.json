@@ -1,6 +1,7 @@
 {
   "name": "dashtar-admin",
   "version": "0.1.0",
+  "home": "./",
   "description": "this is Dashtar-admin built with react.js and tailwindcss",
   "private": true,
   "dependencies": {
