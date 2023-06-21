@@ -1,5 +1,6 @@
 import { Button, Select } from '@windmill/react-ui';
 import { useTranslation } from 'react-i18next';
+import React, { useState } from 'react';
 
 //internal import
 import Error from 'components/form/Error';
@@ -16,7 +17,11 @@ const Setting = () => {
     useSettingSubmit();
 
   const { t } = useTranslation();
+  const [color, setColor] = useState('#6590D5');
 
+  const handleChange = (event) => {
+    setColor(event.target.value);
+  };
   return (
     <>
       <PageTitle>{t('Setting')}</PageTitle>
@@ -49,6 +54,8 @@ const Setting = () => {
                     <input
                       id='nativeColorPicker1'
                       type='color'
+                      value={color}
+                      onChange={handleChange}
                     />
                   </div>
                 </div>
