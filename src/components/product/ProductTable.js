@@ -6,7 +6,7 @@ import {
   TableRow,
 } from "@windmill/react-ui";
 import MainDrawer from "components/drawer/MainDrawer";
-import ProductDrawer from "components/drawer/ProductDrawer";
+// import ProductDrawer from "components/drawer/ProductDrawer";
 import CheckBox from "components/form/CheckBox";
 import DeleteModal from "components/modal/DeleteModal";
 import EditDeleteButton from "components/table/EditDeleteButton";
@@ -125,7 +125,7 @@ const ProductTable = ({ products, isCheck, setIsCheck, currency, lang }) => {
               </Link>
             </TableCell>
             <TableCell className="text-center">
-              <ShowHideButton id={product._id} status={product.status} />
+              <ShowHideButton id={product?._id} status={product?.status} />
               {/* {product.status} */}
             </TableCell>
             <TableCell>

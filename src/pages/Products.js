@@ -16,14 +16,14 @@ import { useTranslation } from "react-i18next";
 import { FiPlus } from "react-icons/fi";
 
 import useAsync from "hooks/useAsync";
-import useToggleDrawer from "hooks/useToggleDrawer";
+// import useToggleDrawer from "hooks/useToggleDrawer";
 import UploadManyTwo from "components/common/UploadManyTwo";
 import NotFound from "components/table/NotFound";
 import ProductServices from "services/ProductServices";
 import PageTitle from "components/Typography/PageTitle";
 import { SidebarContext } from "context/SidebarContext";
-import ProductTable from "components/product/ProductTable";
-import SelectCategory from "components/form/SelectCategory";
+// import ProductTable from "components/product/ProductTable";
+// import SelectCategory from "components/form/SelectCategory";
 import MainDrawer from "components/drawer/MainDrawer";
 import ProductDrawer from "components/drawer/ProductDrawer";
 import CheckBox from "components/form/CheckBox";
@@ -32,21 +32,21 @@ import { FiEdit, FiTrash2 } from "react-icons/fi";
 import DeleteModal from "components/modal/DeleteModal";
 import BulkActionDrawer from "components/drawer/BulkActionDrawer";
 import TableLoading from "components/preloader/TableLoading";
-import SettingServices from "services/SettingServices";
+// import SettingServices from "services/SettingServices";
 
 const Products = () => {
-  const { title, allId, serviceId, handleDeleteMany, handleUpdateMany } =
-    useToggleDrawer();
+  // const { title, allId, serviceId, handleDeleteMany, handleUpdateMany } =
+  //   useToggleDrawer();
 
   const { t } = useTranslation();
   const {
     toggleDrawer,
-    lang,
+    // lang,
     currentPage,
     handleChangePage,
     searchText,
     category,
-    setCategory,
+    // setCategory,
     searchRef,
     handleSubmitForAll,
     sortedField,
@@ -64,8 +64,8 @@ const Products = () => {
     })
   );
 
-  const { data: globalSetting } = useAsync(SettingServices.getGlobalSetting);
-  const currency = globalSetting?.default_currency || "$";
+  // const { data: globalSetting } = useAsync(SettingServices.getGlobalSetting);
+  // const currency = globalSetting?.default_currency || "$";
   // console.log("product page", data);
 
   // react hooks
@@ -80,11 +80,13 @@ const Products = () => {
     }
   };
 
+  const handleUpdateMany = () => { };
+  const handleDeleteMany = () => { };
   // console.log('productss',products)
   const {
-    serviceData,
-    filename,
-    isDisabled,
+    // serviceData,
+    // filename,
+    // isDisabled,
     handleSelectFile,
     handleUploadMultiple,
     handleRemoveSelectFile,
@@ -93,11 +95,11 @@ const Products = () => {
   return (
     <>
       <PageTitle>{t("ProductsPage")}</PageTitle>
-      <DeleteModal ids={allId} setIsCheck={setIsCheck} title={title} />
-      <BulkActionDrawer ids={allId} title="Products" />
-      <MainDrawer>
-        <ProductDrawer id={serviceId} />
-      </MainDrawer>
+      {/* <DeleteModal ids={allId} setIsCheck={setIsCheck} title={title} /> */}
+      {/* <BulkActionDrawer ids={1} title="Products" /> */}
+      {/* <MainDrawer>
+        <ProductDrawer id={1} />
+      </MainDrawer> */}
       <Card className="min-w-0 shadow-xs overflow-hidden bg-white dark:bg-gray-800 mb-5">
         <CardBody className="">
           <form
@@ -107,8 +109,8 @@ const Products = () => {
             <div className="flex justify-start xl:w-1/2  md:w-full">
               <UploadManyTwo
                 title="Products"
-                filename={filename}
-                isDisabled={isDisabled}
+                filename={'filename'}
+                isDisabled={true}
                 totalDoc={data?.totalDoc}
                 handleSelectFile={handleSelectFile}
                 handleUploadMultiple={handleUploadMultiple}
@@ -179,7 +181,7 @@ const Products = () => {
             </div>
 
             <div className="flex-grow-0 md:flex-grow lg:flex-grow xl:flex-grow">
-              <SelectCategory setCategory={setCategory} lang={lang} />
+              {/* <SelectCategory setCategory={setCategory} lang={lang} /> */}
             </div>
 
             <div className="flex-grow-0 md:flex-grow lg:flex-grow xl:flex-grow">
@@ -210,7 +212,7 @@ const Products = () => {
 
       {loading ? (
         <TableLoading row={12} col={7} width={160} height={20} />
-      ) : serviceData?.length !== 0 ? (
+      ) : true ? (
         <TableContainer className="mb-8 rounded-b-lg">
           <Table>
             <TableHeader>
@@ -237,13 +239,13 @@ const Products = () => {
                 <TableCell className="text-right">{t("ActionsTbl")}</TableCell>
               </tr>
             </TableHeader>
-            <ProductTable
+            {/* <ProductTable
               lang={lang}
               isCheck={isCheck}
               products={data?.products}
               setIsCheck={setIsCheck}
               currency={currency}
-            />
+            /> */}
           </Table>
           <TableFooter>
             <Pagination

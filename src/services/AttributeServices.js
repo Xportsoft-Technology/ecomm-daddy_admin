@@ -8,7 +8,8 @@ const AttributeServices = {
   },
 
   getShowingAttributes: async (body) => {
-    return requests.get('/attributes/show', body);
+    // return requests.get('/attributes/show', body);
+    return { type: '1', option: '1', option1: '1' };
   },
 
   addAttribute: async (body) => {
