@@ -26,11 +26,12 @@ const OrderTable = ({ orders, currency, globalSetting }) => {
 
             <TableCell>
               <span className="text-sm">
-                {showDateTimeFormat(
+                {/* {showDateTimeFormat(
                   order?.updatedDate,
                   globalSetting?.default_date_format,
                   "h:mm A"
-                )}
+                )} */}
+                16/08/2023 - 2:43 PM
               </span>
             </TableCell>
 
@@ -52,7 +53,9 @@ const OrderTable = ({ orders, currency, globalSetting }) => {
             </TableCell>
 
             <TableCell className="text-xs">
-              <Status status={order?.status} />
+              {/* <Status status={order?.status || 'pending'} /> */}
+              <Status status={"Pending"} />
+
             </TableCell>
 
             <TableCell className="text-center">
@@ -61,7 +64,8 @@ const OrderTable = ({ orders, currency, globalSetting }) => {
 
             <TableCell className="text-right flex justify-end">
               <div className="flex justify-between items-center">
-                <PrintReceipt orderId={order._id} />
+                {/* <PrintReceipt orderId={order._id} /> */}
+                <PrintReceipt orderId={1} />
 
                 <span className="p-2 cursor-pointer text-gray-400 hover:text-green-600">
                   <Link to={`/order/${order._id}`}>

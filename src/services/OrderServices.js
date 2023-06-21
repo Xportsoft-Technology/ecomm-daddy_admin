@@ -1,28 +1,47 @@
+import { baseFileName } from "coffee-script/lib/coffee-script/helpers";
 import requests from "./httpService";
 
 const OrderServices = {
   getAllOrders: async ({
-    body,
-    headers,
-    customerName,
-    status,
-    page = 1,
-    limit = 8,
-    day,
-    startDate,
-    endDate,
+    // body,
+    // headers,
+    // customerName,
+    // status,
+    // page = 1,
+    // limit = 8,
+    // day,
+    // startDate,
+    // endDate,
   }) => {
-    const searchName = customerName !== null ? customerName : "";
-    const searchStatus = status !== null ? status : "";
-    const searchDay = day !== null ? day : "";
-    const startD = startDate !== null ? startDate : "";
-    const endD = endDate !== null ? endDate : "";
+    // const searchName = customerName !== null ? customerName : "";
+    // const searchStatus = status !== null ? status : "";
+    // const searchDay = day !== null ? day : "";
+    // const startD = startDate !== null ? startDate : "";
+    // const endD = endDate !== null ? endDate : "";
 
-    return requests.get(
-      `/orders?customerName=${searchName}&status=${searchStatus}&day=${searchDay}&page=${page}&limit=${limit}&startDate=${startD}&endDate=${endD}`,
-      body,
-      headers
-    );
+    //   return requests.get(
+    //     `/orders?customerName=${searchName}&status=${searchStatus}&day=${searchDay}&page=${page}&limit=${limit}&startDate=${startD}&endDate=${endD}`,
+    //     body,
+    //     headers
+    //   );
+
+    return {
+      orders: [
+        {
+          _id: 1,
+          invoice: 123,
+          subTotal: 123,
+          shippingCost: 123,
+          discount: 30,
+          total: 1230,
+          paymentMethod: "COD",
+          status: "pending",
+          user_info: { name: "Rohit" },
+          createdAt: 2022,
+          updatedAt: "Just-Now",
+        }
+      ]
+    }
   },
 
   getAllOrdersTwo: async ({ invoice, body, headers }) => {

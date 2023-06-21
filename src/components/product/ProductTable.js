@@ -39,7 +39,7 @@ const ProductTable = ({ products, isCheck, setIsCheck, currency, lang }) => {
 
       {isCheck?.length < 2 && (
         <MainDrawer>
-          <ProductDrawer currency={currency} id={serviceId} />
+          {/* <ProductDrawer currency={currency} id={serviceId} /> */}
         </MainDrawer>
       )}
 
