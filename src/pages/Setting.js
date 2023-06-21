@@ -49,7 +49,6 @@ const Setting = () => {
                     <input
                       id='nativeColorPicker1'
                       type='color'
-                      value='#6590D5'
                     />
                   </div>
                 </div>

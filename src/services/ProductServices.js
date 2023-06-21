@@ -6,13 +6,18 @@ const ProductServices = {
     const searchTitle = title !== null ? title : "";
     const searchPrice = price !== null ? price : "";
 
-    return requests.get(
-      `/products?page=${page}&limit=${limit}&category=${searchCategory}&title=${searchTitle}&price=${searchPrice}`
+    // return requests.get(
+    //   `/products?page=${page}&limit=${limit}&category=${searchCategory}&title=${searchTitle}&price=${searchPrice}`
+    // );
+    return (
+      { products: [{ _id: 1, title: { en: "Samsung" }, prices: { price: 120, discount: 10, originalPrice: 108 }, stock: 10, description: 'description', tag: 'none', category: { name: 'Phones' }, image: ['none'], status: 'none' }] }
     );
   },
 
   getProductById: async (id) => {
-    return requests.post(`/products/${id}`);
+    // return requests.post(`/products/${id}`);  return (
+    return ({ products: [{ id: 1, title: 'samsung', prices: { price: 120, discount: 10, originalPrice: 108 }, stock: 10, description: 'description', tag: 'none', category: { name: 'Phones' } }] }
+    );
   },
   addProduct: async (body) => {
     return requests.post("/products/add", body);

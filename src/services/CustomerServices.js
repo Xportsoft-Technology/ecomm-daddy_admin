@@ -1,9 +1,13 @@
 import requests from "./httpService";
 
 const CustomerServices = {
-  getAllCustomers: async ({ searchText = "" }) => {
-    return requests.get(`/customer?searchText=${searchText}`);
+  getAllCustomers: async () => {
+    return ([{ id: 1, name: 'Rohit', JoiningDate: '16/06/2013', email: 'customer@test.com', phone: '9034182898' }])
   },
+  // getAllCustomers: async ({ searchText = "" }) => {
+  //   return requests.get(`/customer?searchText=${searchText}`);
+
+  // }
 
   addAllCustomers: async (body) => {
     return requests.post("/customer/add/all", body);

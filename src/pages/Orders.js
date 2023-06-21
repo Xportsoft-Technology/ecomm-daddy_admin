@@ -53,13 +53,13 @@ const Orders = () => {
 
   const { data, loading } = useAsync(() =>
     OrderServices.getAllOrders({
-      customerName: searchText,
-      status,
-      page: currentPage,
-      limit: resultsPerPage,
-      day: time,
-      startDate,
-      endDate,
+      // customerName: searchText,
+      // status,
+      // page: currentPage,
+      // limit: resultsPerPage,
+      // day: time,
+      // startDate,
+      // endDate,
     })
   );
 
@@ -111,6 +111,7 @@ const Orders = () => {
 
   return (
     <>
+      {console.log(data)}
       <PageTitle>{t("Orders")}</PageTitle>
 
       <Card className="min-w-0 shadow-xs overflow-hidden bg-white dark:bg-gray-800 mb-5">
@@ -198,10 +199,9 @@ const Orders = () => {
                     onClick={handleDownloadOrders}
                     disabled={data?.orders?.length <= 0 || loadingExport}
                     type="button"
-                    className={`${
-                      (data?.orders?.length <= 0 || loadingExport) &&
+                    className={`${(data?.orders?.length <= 0 || loadingExport) &&
                       "opacity-50 cursor-not-allowed bg-red-300"
-                    } flex items-center justify-center text-sm leading-5 h-12 w-full text-center transition-colors duration-150 font-medium focus:outline-none px-6 py-2 rounded-md text-white bg-green-500 border border-transparent active:bg-green-600 hover:bg-green-600 focus:ring focus:ring-purple-300`}
+                      } flex items-center justify-center text-sm leading-5 h-12 w-full text-center transition-colors duration-150 font-medium focus:outline-none px-6 py-2 rounded-md text-white bg-green-500 border border-transparent active:bg-green-600 hover:bg-green-600 focus:ring focus:ring-purple-300`}
                   >
                     Download All Orders
                     <span className="ml-2 text-base">
