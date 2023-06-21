@@ -750,6 +750,7 @@
   "UseMultipleLanguagesInShop": "I'd like to use multiple languages in my shop, admin and POS",
   "UseMultipleCurrenciesInShop": "I'd like to use multiple currencies in my shop, admin and POS",
   "NumberOfImagesPerProduct": "Number of images per product",
+  "ColorPicker": "Choose Primary Color",
   "PosView": "POS view",
   "WorkingHours": "Working Hours",
   "Open": "Open",
