@@ -26,9 +26,11 @@ import useFilter from "hooks/useFilter";
 import { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { FiCheck, FiRefreshCw, FiShoppingCart, FiTruck } from "react-icons/fi";
-import { ImCreditCard, ImStack } from "react-icons/im";
+import {
+  BiBox,
+  BiLineChartDown,
+} from "react-icons/bi";
 import OrderServices from "services/OrderServices";
-//internal import
 
 const Dashboard = () => {
   const { globalSetting } = useFilter();
@@ -244,7 +246,7 @@ const Dashboard = () => {
           currency={currency}
           title="Today Order"
           title2="TodayOrder"
-          Icon={ImStack}
+          Icon={BiBox}
           cash={todayCashPayment || 0}
           card={todayCardPayment || 0}
           credit={todayCreditPayment || 0}
@@ -258,7 +260,7 @@ const Dashboard = () => {
           currency={currency}
           title="Yesterday Order"
           title2="YesterdayOrder"
-          Icon={ImStack}
+          Icon={BiBox}
           cash={yesterdayCashPayment || 0}
           card={yesterdayCardPayment || 0}
           credit={yesterdayCreditPayment || 0}
@@ -281,7 +283,7 @@ const Dashboard = () => {
           mode={mode}
           currency={currency}
           title2="AllTimeSales"
-          Icon={ImCreditCard}
+          Icon={BiLineChartDown}
           price={dashboardOrderAmount?.totalAmount || 0}
           className="text-white dark:text-green-100 bg-green-500"
           loading={loadingOrderAmount}
