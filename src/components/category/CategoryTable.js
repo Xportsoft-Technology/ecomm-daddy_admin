@@ -42,7 +42,7 @@ const CategoryTable = ({
       </MainDrawer>
 
       <TableBody>
-        {categories?.map((category) => (
+        {/* {categories?.map((category) => (
           <TableRow key={category._id}>
             <TableCell>
               <CheckBox
@@ -135,7 +135,7 @@ const CategoryTable = ({
               />
             </TableCell>
           </TableRow>
-        ))}
+        ))} */}
       </TableBody>
     </>
   );

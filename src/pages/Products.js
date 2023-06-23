@@ -24,13 +24,13 @@ import PageTitle from "components/Typography/PageTitle";
 import { SidebarContext } from "context/SidebarContext";
 // import ProductTable from "components/product/ProductTable";
 // import SelectCategory from "components/form/SelectCategory";
-import MainDrawer from "components/drawer/MainDrawer";
-import ProductDrawer from "components/drawer/ProductDrawer";
+// import MainDrawer from "components/drawer/MainDrawer";
+// import ProductDrawer from "components/drawer/ProductDrawer";
 import CheckBox from "components/form/CheckBox";
 import useProductFilter from "hooks/useProductFilter";
 import { FiEdit, FiTrash2 } from "react-icons/fi";
-import DeleteModal from "components/modal/DeleteModal";
-import BulkActionDrawer from "components/drawer/BulkActionDrawer";
+// import DeleteModal from "components/modal/DeleteModal";
+// import BulkActionDrawer from "components/drawer/BulkActionDrawer";
 import TableLoading from "components/preloader/TableLoading";
 // import SettingServices from "services/SettingServices";
 

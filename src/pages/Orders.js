@@ -31,19 +31,19 @@ import spinnerLoadingImage from "assets/img/spinner.gif";
 
 const Orders = () => {
   const {
-    time,
+    // time,
     setTime,
-    currentPage,
-    searchText,
+    // currentPage,
+    // searchText,
     searchRef,
-    status,
+    // status,
     setStatus,
     handleChangePage,
     handleSubmitForAll,
     resultsPerPage,
-    startDate,
+    // startDate,
     setStartDate,
-    endDate,
+    // endDate,
     setEndDate,
     lang,
   } = useContext(SidebarContext);

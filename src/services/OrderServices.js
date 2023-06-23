@@ -1,9 +1,9 @@
-import { baseFileName } from "coffee-script/lib/coffee-script/helpers";
+// import { baseFileName } from "coffee-script/lib/coffee-script/helpers";
 import requests from "./httpService";
 
 const OrderServices = {
-  getAllOrders: async ({
-    // body,
+  getAllOrders: async (
+    // {body,
     // headers,
     // customerName,
     // status,
@@ -11,8 +11,8 @@ const OrderServices = {
     // limit = 8,
     // day,
     // startDate,
-    // endDate,
-  }) => {
+    // endDate,}
+  ) => {
     // const searchName = customerName !== null ? customerName : "";
     // const searchStatus = status !== null ? status : "";
     // const searchDay = day !== null ? day : "";

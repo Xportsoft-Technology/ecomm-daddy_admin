@@ -10,7 +10,7 @@ import {
   TableFooter,
   TableHeader,
 } from "@windmill/react-ui";
-import { useContext, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { FiEdit, FiPlus, FiTrash2 } from "react-icons/fi";
 
@@ -20,43 +20,43 @@ import useAsync from "hooks/useAsync";
 import { SidebarContext } from "context/SidebarContext";
 import CategoryServices from "services/CategoryServices";
 import useToggleDrawer from "hooks/useToggleDrawer";
-import useFilter from "hooks/useFilter";
-import DeleteModal from "components/modal/DeleteModal";
-import BulkActionDrawer from "components/drawer/BulkActionDrawer";
+// import useFilter from "hooks/useFilter";
+// import DeleteModal from "components/modal/DeleteModal";
+// import BulkActionDrawer from "components/drawer/BulkActionDrawer";
 import PageTitle from "components/Typography/PageTitle";
 import MainDrawer from "components/drawer/MainDrawer";
-import CategoryDrawer from "components/drawer/CategoryDrawer";
-import UploadManyTwo from "components/common/UploadManyTwo";
+// import CategoryDrawer from "components/drawer/CategoryDrawer";
+// import UploadManyTwo from "components/common/UploadManyTwo";
 import SwitchToggleChildCat from "components/form/SwitchToggleChildCat";
 import TableLoading from "components/preloader/TableLoading";
 import CheckBox from "components/form/CheckBox";
-import CategoryTable from "components/category/CategoryTable";
+// import CategoryTable from "components/category/CategoryTable";
 import NotFound from "components/table/NotFound";
 
 const Category = () => {
   const { toggleDrawer, lang } = useContext(SidebarContext);
 
-  const { data, loading } = useAsync(CategoryServices.getAllCategory);
-  const { data: getAllCategories } = useAsync(CategoryServices.getAllCategories);
+  // const { data, loading } = useAsync(CategoryServices.getAllCategory);
+  // const { data: getAllCategories } = useAsync(CategoryServices.getAllCategories);
 
   const { handleDeleteMany, allId, handleUpdateMany, serviceId } = useToggleDrawer();
 
   const { t } = useTranslation();
 
-  const {
-    handleSubmitCategory,
-    categoryRef,
-    totalResults,
-    resultsPerPage,
-    dataTable,
-    serviceData,
-    handleChangePage,
-    filename,
-    isDisabled,
-    handleSelectFile,
-    handleUploadMultiple,
-    handleRemoveSelectFile,
-  } = useFilter(data[0]?.children ? data[0]?.children : data);
+  // const {
+  //   handleSubmitCategory,
+  //   categoryRef,
+  //   totalResults,
+  //   resultsPerPage,
+  //   dataTable,
+  //   serviceData,
+  //   handleChangePage,
+  //   // filename,
+  //   // isDisabled,
+  //   // handleSelectFile,
+  //   // handleUploadMultiple,
+  //   // handleRemoveSelectFile,
+  // } = useFilter(data[0]?.children ? data[0]?.children : data);
 
   // react hooks
   const [isCheckAll, setIsCheckAll] = useState(false);
@@ -65,21 +65,25 @@ const Category = () => {
 
   const handleSelectAll = () => {
     setIsCheckAll(!isCheckAll);
-    setIsCheck(data[0]?.children.map((li) => li._id));
+    // setIsCheck(data[0]?.children.map((li) => li._id));
+
     if (isCheckAll) {
       setIsCheck([]);
     }
   };
+  const handleSubmitCategory = () => { };
+  const categoryRef = useRef();
+  const handleChangePage = () => { };
 
   return (
     <>
-     <PageTitle>{t("Category")}</PageTitle>
-      <DeleteModal ids={allId} setIsCheck={setIsCheck} />
+      <PageTitle>{t("Category")}</PageTitle>
+      {/* <DeleteModal ids={allId} setIsCheck={setIsCheck} />
 
-      <BulkActionDrawer ids={allId} title="Categories" lang={lang} data={data} isCheck={isCheck} />
+      <BulkActionDrawer ids={allId} title="Categories" lang={lang} data={data} isCheck={isCheck} /> */}
 
       <MainDrawer>
-        <CategoryDrawer id={serviceId} data={data} lang={lang} />
+        {/* <CategoryDrawer id={serviceId} data={data} lang={lang} /> */}
       </MainDrawer>
 
       <Card className="min-w-0 shadow-xs overflow-hidden bg-white dark:bg-gray-800 mb-5">
@@ -88,7 +92,7 @@ const Category = () => {
           <form onSubmit={handleSubmitCategory} className="py-3  grid gap-4 lg:gap-6 xl:gap-6  xl:flex">
             {/* </div> */}
             <div className="flex justify-start w-1/2 xl:w-1/2 md:w-full">
-              <UploadManyTwo
+              {/* <UploadManyTwo
                 title="Categories"
                 exportData={getAllCategories}
                 filename={filename}
@@ -96,7 +100,7 @@ const Category = () => {
                 handleSelectFile={handleSelectFile}
                 handleUploadMultiple={handleUploadMultiple}
                 handleRemoveSelectFile={handleRemoveSelectFile}
-              />
+              /> */}
             </div>
 
             <div className="lg:flex  md:flex xl:justify-end xl:w-1/2  md:w-full md:justify-start flex-grow-0">
@@ -164,54 +168,63 @@ const Category = () => {
         processOption={showChild}
         name={showChild}
       />
-      {loading ? (
+      {false ? (
         <TableLoading row={12} col={6} width={190} height={20} />
-      ) : serviceData?.length !== 0 ? (
-        <TableContainer className="mb-8">
-          <Table>
-            <TableHeader>
-              <tr>
-                <TableCell>
-                  <CheckBox
-                    type="checkbox"
-                    name="selectAll"
-                    id="selectAll"
-                    handleClick={handleSelectAll}
-                    isChecked={isCheckAll}
-                  />
-                </TableCell>
+      ) :
+        //  serviceData?.length !== 0 
+        true ?
+          (
+            <TableContainer className="mb-8">
+              <Table>
+                <TableHeader>
+                  <tr>
+                    <TableCell>
+                      <CheckBox
+                        type="checkbox"
+                        name="selectAll"
+                        id="selectAll"
+                        handleClick={handleSelectAll}
+                        isChecked={isCheckAll}
+                      />
+                    </TableCell>
 
-                <TableCell>{t("catIdTbl")}</TableCell>
-                <TableCell>{t("catIconTbl")}</TableCell>
-                <TableCell>{t("CatTbName")}</TableCell>
-                <TableCell>{t("CatTbDescription")}</TableCell>
-                <TableCell className="text-center">{t("catPublishedTbl")}</TableCell>
-                <TableCell className="text-right">{t("catActionsTbl")}</TableCell>
-              </tr>
-            </TableHeader>
+                    <TableCell>{t("catIdTbl")}</TableCell>
+                    <TableCell>{t("catIconTbl")}</TableCell>
+                    <TableCell>{t("CatTbName")}</TableCell>
+                    <TableCell>{t("CatTbDescription")}</TableCell>
+                    <TableCell className="text-center">{t("catPublishedTbl")}</TableCell>
+                    <TableCell className="text-right">{t("catActionsTbl")}</TableCell>
+                  </tr>
+                </TableHeader>
 
-            <CategoryTable
+                {/* <CategoryTable
               data={data}
               lang={lang}
               isCheck={isCheck}
               categories={dataTable}
               setIsCheck={setIsCheck}
               showChild={showChild}
-            />
-          </Table>
+            /> */}
+              </Table>
 
-          <TableFooter>
-            <Pagination
+              <TableFooter>
+                {/* <Pagination
               totalResults={totalResults}
               resultsPerPage={resultsPerPage}
               onChange={handleChangePage}
               label="Table navigation"
-            />
-          </TableFooter>
-        </TableContainer>
-      ) : (
-        <NotFound title="Sorry, There are no categories right now." />
-      )}
+            /> */}
+                <Pagination
+                  totalResults={10}
+                  resultsPerPage={2}
+                  onChange={handleChangePage}
+                  label="Table navigation"
+                />
+              </TableFooter>
+            </TableContainer>
+          ) : (
+            <NotFound title="Sorry, There are no categories right now." />
+          )}
     </>
   );
 };
