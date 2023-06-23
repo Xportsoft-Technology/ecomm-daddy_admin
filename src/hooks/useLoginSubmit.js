@@ -38,7 +38,7 @@ const useLoginSubmit = () => {
       setLoading(false);
       notifySuccess('Login Success!');
       dispatch({ type: 'USER_LOGIN', payload: { email: email } });
-      history.replace('/');
+      history.replace('/customers');
     }
 
     if (location.pathname === '/signup') {
