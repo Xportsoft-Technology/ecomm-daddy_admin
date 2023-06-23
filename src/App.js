@@ -4,6 +4,7 @@ import {
   Switch,
   Route,
   Redirect,
+  useHistory
 } from 'react-router-dom';
 import { ToastContainer } from './utils/toast';
 import AccessibleNavigationAnnouncer from './components/AccessibleNavigationAnnouncer';
@@ -14,8 +15,9 @@ const Login = lazy(() => import('./pages/Login'));
 const SignUp = lazy(() => import('./pages/SignUp'));
 const ForgetPassword = lazy(() => import('./pages/ForgotPassword'));
 const ResetPassword = lazy(() => import('./pages/ResetPassword'));
-
 const App = () => {
+
+
   return (
     <>
       <ToastContainer />
@@ -31,7 +33,7 @@ const App = () => {
             {' '}
             <Route path="/" component={Layout} />
           </PrivateRoute>
-          <Redirect exact from="/" to="/login" />
+          <Redirect exact from="/" to='/login' />
         </Switch>
       </Router>
     </>

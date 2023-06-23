@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 // import { Link } from "react-router-dom";
 import { Button } from "@windmill/react-ui";
 // import { ImFacebook, ImGoogle } from "react-icons/im";
@@ -9,11 +9,24 @@ import InputArea from "components/form/InputArea";
 import ImageLight from "assets/img/login-office.jpeg";
 import ImageDark from "assets/img/login-office-dark.jpeg";
 import useLoginSubmit from "../hooks/useLoginSubmit";
+import { AdminContext } from 'context/AdminContext';
+import { useHistory } from 'react-router-dom';
+import { notifySuccess } from "utils/toast";
 
 const Login = () => {
   const { t } = useTranslation();
   const { onSubmit, register, handleSubmit, errors, loading } =
     useLoginSubmit();
+
+  const { dispatch } = useContext(AdminContext)
+  const history = useHistory();
+  let Email = localStorage.getItem("email");
+  if (Email) {
+    history.replace('/');
+    notifySuccess('Welcome back!');
+    dispatch({ type: 'USER_LOGIN', payload: { email: Email } });
+
+  }
 
   return (
     <>
