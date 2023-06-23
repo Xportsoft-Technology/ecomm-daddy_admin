@@ -1,9 +1,9 @@
 import Cookies from 'js-cookie';
 import React, { createContext, useReducer } from 'react';
-
 export const AdminContext = createContext();
 
 const initialState = {
+
   adminInfo: Cookies.get('adminInfo')
     ? JSON.parse(Cookies.get('adminInfo'))
     : null,
@@ -15,6 +15,8 @@ function reducer(state, action) {
       return { ...state, adminInfo: action.payload };
 
     case 'USER_LOGOUT':
+      localStorage.clear();
+
       return {
         ...state,
         adminInfo: null,
@@ -28,6 +30,8 @@ function reducer(state, action) {
 export const AdminProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const value = { state, dispatch };
+
+
   return (
     <AdminContext.Provider value={value}>{children}</AdminContext.Provider>
   );

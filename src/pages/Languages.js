@@ -91,7 +91,7 @@ const Languages = () => {
                 className="w-full rounded-md h-12 btn-gray text-gray-600"
               >
                 <span className="mr-2">
-                   <FiEdit />
+                  <FiEdit />
                 </span>
                 {t("BulkAction")}
               </Button>
