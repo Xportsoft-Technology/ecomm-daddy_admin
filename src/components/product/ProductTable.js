@@ -58,10 +58,10 @@ const ProductTable = ({ products, isCheck, setIsCheck, currency, lang }) => {
 
             <TableCell>
               <div className="flex items-center">
-                {product?.image[0] ? (
+                {product?.image ? (
                   <Avatar
                     className="hidden p-1 mr-2 md:block bg-gray-50 shadow-none"
-                    src={product?.image[0]}
+                    src={product?.image}
                     alt="product"
                   />
                 ) : (
@@ -83,7 +83,8 @@ const ProductTable = ({ products, isCheck, setIsCheck, currency, lang }) => {
 
             <TableCell>
               <span className="text-sm">
-                {showingTranslateValue(product?.category?.name, lang)}
+                {/* {showingTranslateValue(product?.parent, lang)} */}
+                {product?.parent}
               </span>
             </TableCell>
 

@@ -4,12 +4,14 @@ import { useTranslation } from "react-i18next";
 
 //internal import
 
-import useAsync from "hooks/useAsync";
-import CategoryServices from "services/CategoryServices";
+// import useAsync from "hooks/useAsync";
+// import CategoryServices from "services/CategoryServices";
 import { showingTranslateValue } from "utils/translate";
+import categoryData from "utils/categories";
 
 const SelectCategory = ({ setCategory, lang }) => {
-  const { data } = useAsync(CategoryServices.getAllCategories);
+  // const { data } = useAsync(CategoryServices.getAllCategories);
+  const data = categoryData;
   // console.log('data category',data)
   const { t } = useTranslation();
   return (

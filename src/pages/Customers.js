@@ -1,3 +1,4 @@
+import React from "react";
 import {
   Card,
   CardBody,
@@ -14,16 +15,16 @@ import CustomerTable from "components/customer/CustomerTable";
 import TableLoading from "components/preloader/TableLoading";
 import NotFound from "components/table/NotFound";
 import PageTitle from "components/Typography/PageTitle";
-import useAsync from "hooks/useAsync";
+// import useAsync from "hooks/useAsync";
 import useFilter from "hooks/useFilter";
-import React from "react";
 
 import { useTranslation } from "react-i18next";
-import CustomerServices from "services/CustomerServices";
+// import CustomerServices from "services/CustomerServices";
+import userData from "utils/customers";
 
 const Customers = () => {
-  const { data, loading } = useAsync(CustomerServices.getAllCustomers);
-
+  // const { data, loading } = useAsync(CustomerServices.getAllCustomers);
+  let loading = false;
   // console.log('customer',data)
 
   const {
@@ -39,7 +40,7 @@ const Customers = () => {
     handleSelectFile,
     handleUploadMultiple,
     handleRemoveSelectFile,
-  } = useFilter(data);
+  } = useFilter(userData);
 
   const { t } = useTranslation();
 
@@ -56,7 +57,7 @@ const Customers = () => {
             <div className="items-center">
               <UploadManyTwo
                 title="Customers"
-                exportData={data}
+                exportData={userData}
                 filename={filename}
                 isDisabled={isDisabled}
                 handleSelectFile={handleSelectFile}
@@ -90,7 +91,6 @@ const Customers = () => {
           </form>
         </CardBody>
       </Card>
-
       {loading ? (
         // <Loading loading={loading} />
         <TableLoading row={12} col={6} width={190} height={20} />

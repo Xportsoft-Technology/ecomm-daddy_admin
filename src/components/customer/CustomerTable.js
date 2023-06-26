@@ -28,9 +28,8 @@ const CustomerTable = ({ customers }) => {
           <TableRow key={user._id}>
             <TableCell>
               <span className="font-semibold uppercase text-xs">
-                {/* {" "}
-                {user?._id?.substring(20, 24)} */}
-                {user.id = 1}
+                {/* {" "}*/}
+                {user?._id?.substring(20, 24)}
               </span>
             </TableCell>
             <TableCell>
