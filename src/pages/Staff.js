@@ -25,13 +25,13 @@ import TableLoading from "components/preloader/TableLoading";
 import StaffTable from "components/staff/StaffTable";
 import NotFound from "components/table/NotFound";
 import PageTitle from "components/Typography/PageTitle";
-import { AdminContext } from "context/AdminContext";
+// import { AdminContext } from "context/AdminContext";
 import { SidebarContext } from "context/SidebarContext";
 import adminData from "utils/staff";
 // import AdminServices from "services/AdminServices";
 
 const Staff = () => {
-  const { state } = useContext(AdminContext);
+  // const { state } = useContext(AdminContext);
   // const { adminInfo } = state;
   const { toggleDrawer, lang } = useContext(SidebarContext);
 
@@ -45,8 +45,8 @@ const Staff = () => {
     handleChangePage,
     totalResults,
     resultsPerPage,
-    dataTable,
-    serviceData,
+    // dataTable,
+    // serviceData,
     handleSubmitUser,
   } = useFilter(data);
 
