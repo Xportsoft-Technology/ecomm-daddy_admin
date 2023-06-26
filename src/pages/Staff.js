@@ -17,24 +17,27 @@ import { FiPlus } from "react-icons/fi";
 
 //internal import
 
-import useAsync from "hooks/useAsync";
+// import useAsync from "hooks/useAsync";
 import useFilter from "hooks/useFilter";
 import MainDrawer from "components/drawer/MainDrawer";
-import StaffDrawer from "components/drawer/StaffDrawer";
+// import StaffDrawer from "components/drawer/StaffDrawer";
 import TableLoading from "components/preloader/TableLoading";
 import StaffTable from "components/staff/StaffTable";
 import NotFound from "components/table/NotFound";
 import PageTitle from "components/Typography/PageTitle";
-import { AdminContext } from "context/AdminContext";
+// import { AdminContext } from "context/AdminContext";
 import { SidebarContext } from "context/SidebarContext";
-import AdminServices from "services/AdminServices";
+import adminData from "utils/staff";
+// import AdminServices from "services/AdminServices";
 
 const Staff = () => {
-  const { state } = useContext(AdminContext);
-  const { adminInfo } = state;
+  // const { state } = useContext(AdminContext);
+  // const { adminInfo } = state;
   const { toggleDrawer, lang } = useContext(SidebarContext);
 
-  const { data, loading } = useAsync(() => AdminServices.getAllStaff({ email: adminInfo.email }));
+  // const { data, loading } = useAsync(() => AdminServices.getAllStaff({ email: ('adminInfo.email') }));
+  const data = adminData;
+  const loading = false
 
   const {
     userRef,
@@ -42,10 +45,11 @@ const Staff = () => {
     handleChangePage,
     totalResults,
     resultsPerPage,
-    dataTable,
-    serviceData,
+    // dataTable,
+    // serviceData,
     handleSubmitUser,
   } = useFilter(data);
+
 
   const { t } = useTranslation();
 
@@ -53,7 +57,7 @@ const Staff = () => {
     <>
       <PageTitle>{t("StaffPageTitle")} </PageTitle>
       <MainDrawer>
-        <StaffDrawer />
+        {/* <StaffDrawer /> */}
       </MainDrawer>
 
       <Card className="min-w-0 shadow-xs overflow-hidden bg-white dark:bg-gray-800 mb-5">
@@ -101,37 +105,39 @@ const Staff = () => {
       {loading ? (
         // <Loading loading={loading} />
         <TableLoading row={12} col={7} width={163} height={20} />
-      ) : serviceData?.length !== 0 ? (
-        <TableContainer className="mb-8 rounded-b-lg">
-          <Table>
-            <TableHeader>
-              <tr>
-                <TableCell>{t("StaffNameTbl")}</TableCell>
-                <TableCell>{t("StaffEmailTbl")}</TableCell>
-                <TableCell>{t("StaffContactTbl")}</TableCell>
-                <TableCell>{t("StaffJoiningDateTbl")}</TableCell>
-                <TableCell>{t("StaffRoleTbl")}</TableCell>
-                <TableCell className="text-center">{t("OderStatusTbl")}</TableCell>
-                <TableCell className="text-center">{t("PublishedTbl")}</TableCell>
+      ) : true
+        // serviceData?.length !== 0 
+        ? (
+          <TableContainer className="mb-8 rounded-b-lg">
+            <Table>
+              <TableHeader>
+                <tr>
+                  <TableCell>{t("StaffNameTbl")}</TableCell>
+                  <TableCell>{t("StaffEmailTbl")}</TableCell>
+                  <TableCell>{t("StaffContactTbl")}</TableCell>
+                  <TableCell>{t("StaffJoiningDateTbl")}</TableCell>
+                  <TableCell>{t("StaffRoleTbl")}</TableCell>
+                  <TableCell className="text-center">{t("OderStatusTbl")}</TableCell>
+                  <TableCell className="text-center">{t("PublishedTbl")}</TableCell>
 
-                <TableCell className="text-right">{t("StaffActionsTbl")}</TableCell>
-              </tr>
-            </TableHeader>
+                  <TableCell className="text-right">{t("StaffActionsTbl")}</TableCell>
+                </tr>
+              </TableHeader>
 
-            <StaffTable staffs={dataTable} lang={lang} />
-          </Table>
-          <TableFooter>
-            <Pagination
-              totalResults={totalResults}
-              resultsPerPage={resultsPerPage}
-              onChange={handleChangePage}
-              label="Table navigation"
-            />
-          </TableFooter>
-        </TableContainer>
-      ) : (
-        <NotFound title="Sorry, There are no staff right now." />
-      )}
+              <StaffTable staffs={data} lang={lang} />
+            </Table>
+            <TableFooter>
+              <Pagination
+                totalResults={totalResults}
+                resultsPerPage={resultsPerPage}
+                onChange={handleChangePage}
+                label="Table navigation"
+              />
+            </TableFooter>
+          </TableContainer>
+        ) : (
+          <NotFound title="Sorry, There are no staff right now." />
+        )}
     </>
   );
 };

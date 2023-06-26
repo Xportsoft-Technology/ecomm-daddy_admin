@@ -10,7 +10,7 @@ const SelectCurrency = ({
   required,
   // loading,
 }) => {
-  const { data, loading } = useAsync(CurrencyServices.getShowingCurrency);
+  const { loading } = useAsync(CurrencyServices.getShowingCurrency);
 
   return (
     <>

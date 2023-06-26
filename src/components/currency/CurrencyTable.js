@@ -1,5 +1,5 @@
 import { TableBody, TableCell, TableRow } from "@windmill/react-ui";
-import CurrencyDrawer from "components/drawer/CurrencyDrawer";
+// import CurrencyDrawer from "components/drawer/CurrencyDrawer";
 import MainDrawer from "components/drawer/MainDrawer";
 import CheckBox from "components/form/CheckBox";
 import DeleteModal from "components/modal/DeleteModal";
@@ -30,17 +30,17 @@ const CurrencyTable = ({ currency, isCheck, setIsCheck }) => {
       {isCheck.length < 1 && <DeleteModal id={serviceId} title={title} />}
 
       <MainDrawer>
-        <CurrencyDrawer id={serviceId} />
+        {/* <CurrencyDrawer id={serviceId} /> */}
       </MainDrawer>
 
       <TableBody>
-        {currency?.map((currency) => (
-          <TableRow key={currency._id}>
+        {currency?.map((currency, i) => (
+          <TableRow key={i + 1}>
             <TableCell>
               <CheckBox
                 type="checkbox"
                 name={currency.symbol}
-                id={currency._id}
+                id={currency.cc}
                 handleClick={handleClick}
                 isChecked={isCheck.includes(currency._id)}
               />
@@ -60,8 +60,8 @@ const CurrencyTable = ({ currency, isCheck, setIsCheck }) => {
 
             <TableCell className="text-center">
               <ShowHideButton
-                id={currency._id}
-                status={currency.status}
+                id={currency.cc}
+                status={currency.cc}
                 currencyStatusName="status"
               />
             </TableCell>

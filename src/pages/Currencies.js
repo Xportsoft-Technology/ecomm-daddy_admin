@@ -16,23 +16,25 @@ import MainDrawer from "components/drawer/MainDrawer";
 import DeleteModal from "components/modal/DeleteModal";
 import PageTitle from "components/Typography/PageTitle";
 import { SidebarContext } from "context/SidebarContext";
-import useAsync from "hooks/useAsync";
+// import useAsync from "hooks/useAsync";
 import useFilter from "hooks/useFilter";
 import useToggleDrawer from "hooks/useToggleDrawer";
 import { t } from "i18next";
 import React, { useState, useContext } from "react";
 import { FiEdit, FiTrash2 } from "react-icons/fi";
-import CurrencyServices from "services/CurrencyServices";
+// import CurrencyServices from "services/CurrencyServices";
 import { FiPlus } from "react-icons/fi";
 import TableLoading from "components/preloader/TableLoading";
 import CheckBox from "components/form/CheckBox";
 import CurrencyTable from "components/currency/CurrencyTable";
 import NotFound from "components/table/NotFound";
+import currencies from "utils/currency";
 
 const Currencies = () => {
   const { toggleDrawer } = useContext(SidebarContext);
   const { allId, handleUpdateMany, handleDeleteMany } = useToggleDrawer();
-  const { data, loading } = useAsync(CurrencyServices.getAllCurrency);
+  // const { data, loading } = useAsync(CurrencyServices.getAllCurrency);
+  const data = currencies;
 
   const {
     totalResults,
@@ -57,15 +59,15 @@ const Currencies = () => {
   return (
     <>
       <PageTitle>Currencies</PageTitle>
-      <BulkActionDrawer ids={allId} title="Currencies" />
+      {/* <BulkActionDrawer ids={allId} title="Currencies" /> */}
       <MainDrawer>
-        <CurrencyDrawer />
+        {/* <CurrencyDrawer /> */}
       </MainDrawer>
-      <DeleteModal
+      {/* <DeleteModal
         ids={allId}
         setIsCheck={setIsCheck}
         title="Selected Currencies"
-      />
+      /> */}
 
       <Card className="min-w-0 shadow-xs overflow-hidden bg-white dark:bg-gray-800 mb-5">
         <CardBody>
@@ -118,60 +120,62 @@ const Currencies = () => {
         </CardBody>
       </Card>
 
-      {loading ? (
-        // <Loading loading={loading} />
-        <TableLoading row={12} col={7} width={163} height={20} />
-      ) : (
-        data.length !== 0 && (
-          <TableContainer className="mb-8 rounded-b-lg">
-            <Table>
-              <TableHeader>
-                <tr>
-                  <TableCell>
-                    <CheckBox
-                      type="checkbox"
-                      name="selectAll"
-                      id="selectAll"
-                      isChecked={isCheckAll}
-                      handleClick={handleSelectAll}
-                    />
-                  </TableCell>
-                  <TableCell className="text-center">
-                    {t("CurrenciesName")}
-                  </TableCell>
-                  {/* <TableCell className="text-center">{t("Currencyisocode")}</TableCell> */}
-                  <TableCell className="text-center">
-                    {t("CurrenciesSymbol")}
-                  </TableCell>
+      {false
+        // loading 
+        ? (
+          // <Loading loading={loading} />
+          <TableLoading row={12} col={7} width={163} height={20} />
+        ) : (
+          data.length !== 0 && (
+            <TableContainer className="mb-8 rounded-b-lg">
+              <Table>
+                <TableHeader>
+                  <tr>
+                    <TableCell>
+                      <CheckBox
+                        type="checkbox"
+                        name="selectAll"
+                        id="selectAll"
+                        isChecked={isCheckAll}
+                        handleClick={handleSelectAll}
+                      />
+                    </TableCell>
+                    <TableCell className="text-center">
+                      {t("CurrenciesName")}
+                    </TableCell>
+                    {/* <TableCell className="text-center">{t("Currencyisocode")}</TableCell> */}
+                    <TableCell className="text-center">
+                      {t("CurrenciesSymbol")}
+                    </TableCell>
 
-                  <TableCell className="text-center">
-                    {t("CurrenciesEnabled")}
-                  </TableCell>
+                    <TableCell className="text-center">
+                      {t("CurrenciesEnabled")}
+                    </TableCell>
 
-                  <TableCell className="text-right">
-                    {t("CurrenciesActions")}
-                  </TableCell>
-                </tr>
-              </TableHeader>
+                    <TableCell className="text-right">
+                      {t("CurrenciesActions")}
+                    </TableCell>
+                  </tr>
+                </TableHeader>
 
-              <CurrencyTable
-                currency={dataTable}
-                isCheck={isCheck}
-                setIsCheck={setIsCheck}
-              />
-            </Table>
-            <TableFooter>
-              <Pagination
-                totalResults={totalResults}
-                resultsPerPage={resultsPerPage}
-                onChange={handleChangePage}
-                label="Table navigation"
-              />
-            </TableFooter>
-          </TableContainer>
-        )
-      )}
-      {!loading && data.length === 0 && (
+                <CurrencyTable
+                  currency={data}
+                  isCheck={isCheck}
+                  setIsCheck={setIsCheck}
+                />
+              </Table>
+              <TableFooter>
+                <Pagination
+                  totalResults={totalResults}
+                  resultsPerPage={resultsPerPage}
+                  onChange={handleChangePage}
+                  label="Table navigation"
+                />
+              </TableFooter>
+            </TableContainer>
+          )
+        )}
+      {!true && data.length === 0 && (
         <NotFound title="Sorry, There are no currency right now." />
       )}
     </>

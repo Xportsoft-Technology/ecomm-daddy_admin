@@ -4,13 +4,13 @@ import { Link } from "react-router-dom";
 //internal import
 import { IoRemoveSharp } from "react-icons/io5";
 import useToggleDrawer from "hooks/useToggleDrawer";
-import DeleteModal from "components/modal/DeleteModal";
+// import DeleteModal from "components/modal/DeleteModal";
 import MainDrawer from "components/drawer/MainDrawer";
-import CategoryDrawer from "components/drawer/CategoryDrawer";
+// import CategoryDrawer from "components/drawer/CategoryDrawer";
 import CheckBox from "components/form/CheckBox";
 import ShowHideButton from "components/table/ShowHideButton";
 import EditDeleteButton from "components/table/EditDeleteButton";
-import { showingTranslateValue } from "utils/translate";
+// import { showingTranslateValue } from "utils/translate";
 
 const CategoryTable = ({
   data,
@@ -21,7 +21,7 @@ const CategoryTable = ({
   useParamId,
   showChild,
 }) => {
-  const { title, serviceId, handleModalOpen, handleUpdate } = useToggleDrawer();
+  const { handleModalOpen, handleUpdate } = useToggleDrawer();
 
   const handleClick = (e) => {
     const { id, checked } = e.target;
@@ -33,12 +33,13 @@ const CategoryTable = ({
 
   return (
     <>
-      {isCheck?.length < 1 && (
-        <DeleteModal useParamId={useParamId} id={serviceId} title={title} />
-      )}
+      {/* {isCheck?.length < 1 && (
+        // <DeleteModal useParamId={useParamId} id={serviceId} title={title} />
+
+      )} */}
 
       <MainDrawer>
-        <CategoryDrawer id={serviceId} data={data} lang={lang} />
+        {/* <CategoryDrawer id={serviceId} data={data} lang={lang} /> */}
       </MainDrawer>
 
       <TableBody>
@@ -55,7 +56,7 @@ const CategoryTable = ({
             </TableCell>
 
             <TableCell className="font-semibold uppercase text-xs">
-              {category?._id?.substring(20, 24)}
+              {category?._id?.substring(0, 9)}
             </TableCell>
             <TableCell>
               {category?.icon ? (
@@ -79,17 +80,18 @@ const CategoryTable = ({
                   to={`/categories/${category?._id}`}
                   className="text-blue-700"
                 >
-                  {showingTranslateValue(category?.name, lang)}
+                  {/* {showingTranslateValue(category?.name, lang)} */}
+                  {category.parent}
 
                   <>
                     {showChild && (
                       <>
                         {" "}
                         <div className="pl-2 ">
-                          {category?.children?.map((child) => (
-                            <div key={child._id}>
+                          {category?.children?.map((child, i) => (
+                            <div key={i}>
                               <Link
-                                to={`/categories/${child?._id}`}
+                                to={`/categories/${child}`}
                                 className="text-blue-700"
                               >
                                 <div className="flex text-xs items-center  text-blue-800">
@@ -97,7 +99,8 @@ const CategoryTable = ({
                                     <IoRemoveSharp />
                                   </span>
                                   <span className="text-gray-500">
-                                    {showingTranslateValue(child.name, lang)}
+                                    {/* {showingTranslateValue(child.name, lang)} */}
+                                    {child}
                                   </span>
                                 </div>
                               </Link>
@@ -109,11 +112,15 @@ const CategoryTable = ({
                   </>
                 </Link>
               ) : (
-                <span>{showingTranslateValue(category?.name, lang)}</span>
+                <span>
+                  {/* {showingTranslateValue(category?.name, lang)} */}
+                  {category.parent}
+                </span>
               )}
             </TableCell>
             <TableCell className="text-sm">
-              {showingTranslateValue(category?.description, lang)}
+              {/* {showingTranslateValue(category?.description, lang)} */}
+              {category.type}
             </TableCell>
 
             <TableCell className="text-center">
@@ -131,7 +138,8 @@ const CategoryTable = ({
                 children={category?.children}
                 handleUpdate={handleUpdate}
                 handleModalOpen={handleModalOpen}
-                title={showingTranslateValue(category?.name, lang)}
+                // title={showingTranslateValue(category?.name, lang)}
+                title={category?.parent}
               />
             </TableCell>
           </TableRow>

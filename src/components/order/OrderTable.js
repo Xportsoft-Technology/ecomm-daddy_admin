@@ -6,12 +6,12 @@ import Tooltip from "components/tooltip/Tooltip";
 import { useTranslation } from "react-i18next";
 import { FiZoomIn } from "react-icons/fi";
 import { Link } from "react-router-dom";
-import { showDateTimeFormat } from "utils/dateFormate";
+// import { showDateTimeFormat } from "utils/dateFormate";
 
 const OrderTable = ({ orders, currency, globalSetting }) => {
   // console.log('globalSetting',globalSetting)
   const { t } = useTranslation();
-  // console.log('orders',orders)
+  console.log('orders:=>', orders)
 
   return (
     <>
@@ -20,22 +20,26 @@ const OrderTable = ({ orders, currency, globalSetting }) => {
           <TableRow key={i + 1}>
             <TableCell>
               <span className="font-semibold uppercase text-xs">
-                {order?.invoice}
+                {/* {order?.invoice} */}
+                {order?._id.slice(0, 5)}
               </span>
             </TableCell>
 
             <TableCell>
               <span className="text-sm">
-                {showDateTimeFormat(
+                {/* {showDateTimeFormat(
                   order?.updatedDate,
                   globalSetting?.default_date_format,
                   "h:mm A"
-                )}
+                )} */}
+                {order?.updatedDate}
+
               </span>
             </TableCell>
 
             <TableCell className="text-xs">
-              <span className="text-sm">{order?.user_info?.name}</span>{" "}
+              {/* <span className="text-sm">{order?.user_info?.name}</span>{" "} */}
+              <span className="text-sm">{order?.name}</span>{" "}
             </TableCell>
 
             <TableCell>
@@ -52,7 +56,9 @@ const OrderTable = ({ orders, currency, globalSetting }) => {
             </TableCell>
 
             <TableCell className="text-xs">
-              <Status status={order?.status} />
+              <Status status={order?.status || 'pending'} />
+              {/* <Status status={"Pending"} /> */}
+
             </TableCell>
 
             <TableCell className="text-center">
@@ -62,6 +68,7 @@ const OrderTable = ({ orders, currency, globalSetting }) => {
             <TableCell className="text-right flex justify-end">
               <div className="flex justify-between items-center">
                 <PrintReceipt orderId={order._id} />
+                {/* <PrintReceipt orderId={1} /> */}
 
                 <span className="p-2 cursor-pointer text-gray-400 hover:text-green-600">
                   <Link to={`/order/${order._id}`}>

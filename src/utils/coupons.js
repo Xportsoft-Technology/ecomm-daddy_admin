@@ -10,6 +10,7 @@ const coupons = [
     logo: 'https://i.ibb.co/PDLPDHc/ins1.jpg',
     createdAt: '2021-08-15T13:20:05.898Z',
     updatedAt: '2021-10-15T09:21:29.795Z',
+    status: 'expired'
   },
   {
     _id: '612a45d4ea43af2750ca33d4',
@@ -22,6 +23,7 @@ const coupons = [
     logo: 'https://i.ibb.co/4thS4Z1/ins2.jpg',
     createdAt: '2021-06-20T14:19:00.767Z',
     updatedAt: '2021-11-20T14:26:18.873Z',
+    status: 'available'
   },
   {
     _id: '612a4790ea43af2750ca33e3',
@@ -33,6 +35,7 @@ const coupons = [
     productType: 'Grocery',
     logo: 'https://i.ibb.co/wBBYm7j/ins4.jpg',
     createdAt: '2021-04-13T14:26:24.137Z',
+    status: 'available',
     updatedAt: '2021-11-15T19:21:45.041Z',
   },
   {
@@ -46,6 +49,7 @@ const coupons = [
     logo: 'https://i.ibb.co/23kQcB9/ins3.jpg',
     createdAt: '2021-09-20T14:13:15.650Z',
     updatedAt: '2021-11-25T19:16:31.930Z',
+    status: 'expired'
   },
 ];
 

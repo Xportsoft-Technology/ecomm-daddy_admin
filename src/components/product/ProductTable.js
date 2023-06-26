@@ -6,7 +6,7 @@ import {
   TableRow,
 } from "@windmill/react-ui";
 import MainDrawer from "components/drawer/MainDrawer";
-import ProductDrawer from "components/drawer/ProductDrawer";
+// import ProductDrawer from "components/drawer/ProductDrawer";
 import CheckBox from "components/form/CheckBox";
 import DeleteModal from "components/modal/DeleteModal";
 import EditDeleteButton from "components/table/EditDeleteButton";
@@ -39,7 +39,7 @@ const ProductTable = ({ products, isCheck, setIsCheck, currency, lang }) => {
 
       {isCheck?.length < 2 && (
         <MainDrawer>
-          <ProductDrawer currency={currency} id={serviceId} />
+          {/* <ProductDrawer currency={currency} id={serviceId} /> */}
         </MainDrawer>
       )}
 
@@ -58,10 +58,10 @@ const ProductTable = ({ products, isCheck, setIsCheck, currency, lang }) => {
 
             <TableCell>
               <div className="flex items-center">
-                {product?.image[0] ? (
+                {product?.image ? (
                   <Avatar
                     className="hidden p-1 mr-2 md:block bg-gray-50 shadow-none"
-                    src={product?.image[0]}
+                    src={product?.image}
                     alt="product"
                   />
                 ) : (
@@ -72,10 +72,14 @@ const ProductTable = ({ products, isCheck, setIsCheck, currency, lang }) => {
                 )}
                 <div>
                   <h2 className="text-sm font-medium">
-                    {showingTranslateValue(product?.title, lang)?.substring(
+                    {/* {showingTranslateValue(product?.title, lang)?.substring(
                       0,
                       28
-                    )}
+                    )} */}
+                    {product.title.substring(
+                      0,
+                      15
+                    )}...
                   </h2>
                 </div>
               </div>
@@ -83,26 +87,27 @@ const ProductTable = ({ products, isCheck, setIsCheck, currency, lang }) => {
 
             <TableCell>
               <span className="text-sm">
-                {showingTranslateValue(product?.category?.name, lang)}
+                {/* {showingTranslateValue(product?.parent, lang)} */}
+                {product?.parent}
               </span>
             </TableCell>
 
             <TableCell>
               <span className="text-sm font-semibold">
                 {currency}
-                {Number(product?.prices?.originalPrice).toFixed(2)}
+                {Number(product?.originalPrice).toFixed(2)}
               </span>
             </TableCell>
 
             <TableCell>
               <span className="text-sm font-semibold">
                 {currency}
-                {Number(product?.prices?.price).toFixed(2)}
+                {Number(product?.price).toFixed(2)}
               </span>
             </TableCell>
 
             <TableCell>
-              <span className="text-sm">{product.stock}</span>
+              <span className="text-sm">{product.quantity}</span>
             </TableCell>
             <TableCell>
               {product.stock > 0 ? (
@@ -125,7 +130,7 @@ const ProductTable = ({ products, isCheck, setIsCheck, currency, lang }) => {
               </Link>
             </TableCell>
             <TableCell className="text-center">
-              <ShowHideButton id={product._id} status={product.status} />
+              <ShowHideButton id={product?._id} status={product?.status} />
               {/* {product.status} */}
             </TableCell>
             <TableCell>

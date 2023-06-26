@@ -21,26 +21,54 @@ import TableLoading from "components/preloader/TableLoading";
 import NotFound from "components/table/NotFound";
 import PageTitle from "components/Typography/PageTitle";
 import { SidebarContext } from "context/SidebarContext";
-import useAsync from "hooks/useAsync";
+// import useAsync from "hooks/useAsync";
 import useFilter from "hooks/useFilter";
 import useToggleDrawer from "hooks/useToggleDrawer";
 import React, { useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { FiEdit, FiPlus, FiTrash2 } from "react-icons/fi";
-import AttributeServices from "services/AttributeServices";
+// import AttributeServices from "services/AttributeServices";
 
 //internal import
 
 const Attributes = () => {
   const { toggleDrawer, lang } = useContext(SidebarContext);
-  const { data, loading } = useAsync(() =>
-    AttributeServices.getAllAttributes({
-      type: "attribute",
-      option: "Dropdown",
-      option1: "Radio",
-    })
-  );
+  // const { data, loading } = useAsync(() =>
+  //   AttributeServices.getAllAttributes({
+  //     type: "attribute",
+  //     option: "Dropdown",
+  //     option1: "Radio",
+  //   })
+  // );
 
+  const data = [
+    {
+      _id: '3923fsd',
+      title: 'Atribute 1',
+      name: 'Atribute',
+      option: 'option 1'
+
+    }, {
+      _id: '39ingtr',
+      title: 'Atribute 2',
+      name: 'Atribute',
+      option: 'option 2'
+
+    },
+    {
+      _id: '3345dkll',
+      title: 'Atribute 3',
+      name: 'Atribute',
+      option: 'option 3'
+
+    }, {
+      _id: '32fdjk',
+      title: 'Atribute 4',
+      name: 'Atribute',
+      option: 'option 4'
+
+    }
+  ]
   const { handleDeleteMany, allId, handleUpdateMany } = useToggleDrawer();
 
   const { t } = useTranslation();
@@ -152,54 +180,59 @@ const Attributes = () => {
         </CardBody>
       </Card>
 
-      {loading ? (
-        <TableLoading row={12} col={6} width={180} height={20} />
-      ) : serviceData?.length !== 0 ? (
-        <TableContainer className="mb-8">
-          <Table>
-            <TableHeader>
-              <tr>
-                <TableCell>
-                  <CheckBox
-                    type="checkbox"
-                    name="selectAll"
-                    id="selectAll"
-                    handleClick={handleSelectAll}
-                    isChecked={isCheckAll}
-                  />
-                </TableCell>
-                <TableCell> {t("Id")} </TableCell>
-                <TableCell> {t("AName")}</TableCell>
-                <TableCell> {t("ADisplayName")}</TableCell>
-                <TableCell>{t("AOption")}</TableCell>
+      {false
+        // loading 
+        ? (
+          <TableLoading row={12} col={6} width={180} height={20} />
+        ) :
+        // serviceData?.length !== 0 
+        true
+          ? (
+            <TableContainer className="mb-8">
+              <Table>
+                <TableHeader>
+                  <tr>
+                    <TableCell>
+                      <CheckBox
+                        type="checkbox"
+                        name="selectAll"
+                        id="selectAll"
+                        handleClick={handleSelectAll}
+                        isChecked={isCheckAll}
+                      />
+                    </TableCell>
+                    <TableCell> {t("Id")} </TableCell>
+                    <TableCell> {t("AName")}</TableCell>
+                    <TableCell> {t("ADisplayName")}</TableCell>
+                    <TableCell>{t("AOption")}</TableCell>
 
-                <TableCell className="text-center">{t("catPublishedTbl")}</TableCell>
+                    <TableCell className="text-center">{t("catPublishedTbl")}</TableCell>
 
-                <TableCell className="text-center">{t("Avalues")}</TableCell>
+                    <TableCell className="text-center">{t("Avalues")}</TableCell>
 
-                <TableCell className="text-right">{t("AAction")}</TableCell>
-              </tr>
-            </TableHeader>
+                    <TableCell className="text-right">{t("AAction")}</TableCell>
+                  </tr>
+                </TableHeader>
 
-            <AttributeTable
-              lang={lang}
-              isCheck={isCheck}
-              setIsCheck={setIsCheck}
-              attributes={dataTable}
-            />
-          </Table>
-          <TableFooter>
-            <Pagination
-              totalResults={totalResults}
-              resultsPerPage={resultsPerPage}
-              onChange={handleChangePage}
-              label="Table navigation"
-            />
-          </TableFooter>
-        </TableContainer>
-      ) : (
-        <NotFound title="Sorry, There are no attributes right now." />
-      )}
+                <AttributeTable
+                  lang={lang}
+                  isCheck={isCheck}
+                  setIsCheck={setIsCheck}
+                  attributes={dataTable}
+                />
+              </Table>
+              <TableFooter>
+                <Pagination
+                  totalResults={totalResults}
+                  resultsPerPage={resultsPerPage}
+                  onChange={handleChangePage}
+                  label="Table navigation"
+                />
+              </TableFooter>
+            </TableContainer>
+          ) : (
+            <NotFound title="Sorry, There are no attributes right now." />
+          )}
     </>
   );
 };

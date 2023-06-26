@@ -2,19 +2,29 @@ import requests from './httpService';
 
 const CouponServices = {
   addCoupon: async (body) => {
-    return requests.post('/coupon/add', body);
+    // return requests.post('/coupon/add', body);
+    return [];
+
   },
   addAllCoupon: async (body) => {
-    return requests.post('/coupon/add/all', body);
+    // return requests.post('/coupon/add/all', body);
+    return [];
+
   },
   getAllCoupons: async () => {
-    return requests.get('/coupon');
+    // return requests.get('/coupon');
+    return [];
+
   },
   getCouponById: async (id) => {
-    return requests.get(`/coupon/${id}`);
+    // return requests.get(`/coupon/${id}`);
+    return [];
+
   },
   updateCoupon: async (id, body) => {
-    return requests.put(`/coupon/${id}`, body);
+    // return requests.put(`/coupon/${id}`, body);
+    return [];
+
   },
   updateManyCoupons: async (body) => {
     return requests.patch('/coupon/update/many', body);

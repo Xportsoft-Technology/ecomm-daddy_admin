@@ -9,25 +9,25 @@ import * as dayjs from "dayjs";
 
 //internal import
 
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import { useState } from "react";
 import useToggleDrawer from "hooks/useToggleDrawer";
-import useAsync from "hooks/useAsync";
-import SettingServices from "services/SettingServices";
-import DeleteModal from "components/modal/DeleteModal";
+// import useAsync from "hooks/useAsync";
+// import SettingServices from "services/SettingServices";
+// import DeleteModal from "components/modal/DeleteModal";
 import MainDrawer from "components/drawer/MainDrawer";
-import CouponDrawer from "components/drawer/CouponDrawer";
+// import CouponDrawer from "components/drawer/CouponDrawer";
 import CheckBox from "components/form/CheckBox";
 import ShowHideButton from "components/table/ShowHideButton";
 import EditDeleteButton from "components/table/EditDeleteButton";
-import { showingTranslateValue } from "utils/translate";
-import { showDateFormat } from "utils/dateFormate";
+// import { showingTranslateValue } from "utils/translate";
+// import { showDateFormat } from "utils/dateFormate";
 
 const CouponTable = ({ lang, isCheck, coupons, setIsCheck }) => {
-  const [updatedCoupons, setUpdatedCoupons] = useState([]);
+  const [updatedCoupons, setUpdatedCoupons] = useState(coupons);
 
   const { title, serviceId, handleModalOpen, handleUpdate } = useToggleDrawer();
-  const { data: globalSetting } = useAsync(SettingServices.getGlobalSetting);
+  // const { data: globalSetting } = useAsync(SettingServices.getGlobalSetting);
 
   const handleClick = (e) => {
     const { id, checked } = e.target;
@@ -37,29 +37,29 @@ const CouponTable = ({ lang, isCheck, coupons, setIsCheck }) => {
     }
   };
 
-  const currency = globalSetting?.default_currency || "$";
+  // const currency = globalSetting?.default_currency || "$";
 
-  useEffect(() => {
-    const result = coupons?.map((el) => {
-      const newDate = new Date(el?.updatedAt).toLocaleString("en-US", {
-        timeZone: globalSetting?.default_time_zone,
-      });
-      const newObj = {
-        ...el,
-        updatedDate: newDate,
-      };
-      return newObj;
-    });
-    setUpdatedCoupons(result);
-  }, [coupons, globalSetting?.default_time_zone]);
+  // useEffect(() => {
+  //   const result = coupons?.map((el) => {
+  //     const newDate = new Date(el?.updatedAt).toLocaleString("en-US", {
+  //       timeZone: globalSetting?.default_time_zone,
+  //     });
+  //     const newObj = {
+  //       ...el,
+  //       updatedDate: newDate,
+  //     };
+  //     return newObj;
+  //   });
+  //   setUpdatedCoupons(result);
+  // }, [coupons, globalSetting?.default_time_zone]);
 
   return (
     <>
-      {isCheck.length < 1 && <DeleteModal id={serviceId} title={title} />}
+      {/* {isCheck.length < 1 && <DeleteModal id={serviceId} title={title} />} */}
 
       {isCheck.length < 2 && (
         <MainDrawer>
-          <CouponDrawer id={serviceId} />
+          {/* <CouponDrawer id={serviceId} /> */}
         </MainDrawer>
       )}
 
@@ -92,7 +92,8 @@ const CouponTable = ({ lang, isCheck, coupons, setIsCheck }) => {
                 )}
                 <div>
                   <span className="text-sm">
-                    {showingTranslateValue(coupon?.title, lang)}
+                    {/* {showingTranslateValue(coupon?.title, lang)} */}
+                    {coupon.title}
                   </span>{" "}
                 </div>
               </div>{" "}
@@ -103,22 +104,25 @@ const CouponTable = ({ lang, isCheck, coupons, setIsCheck }) => {
               <span className="text-sm"> {coupon.couponCode}</span>{" "}
             </TableCell>
 
-            {coupon?.discountType?.type ? (
-              <TableCell>
-                {" "}
-                <span className="text-sm font-semibold">
-                  {" "}
-                  {coupon?.discountType?.type === "percentage"
-                    ? `${coupon?.discountType?.value}%`
-                    : `${currency}${coupon?.discountType?.value}`}
-                </span>{" "}
-              </TableCell>
-            ) : (
-              <TableCell>
-                {" "}
-                <span className="text-sm font-semibold"> </span>{" "}
-              </TableCell>
-            )}
+            {
+              true
+                // coupon?.discountType?.type 
+                ? (
+                  <TableCell>
+                    {" "}
+                    <span className="text-sm font-semibold">
+                      {" "}
+                      {coupon?.discountType?.type === "percentage"
+                        ? `${coupon?.discountType?.value}%`
+                        : `${'$'}${coupon?.discountPercentage}`}
+                    </span>{" "}
+                  </TableCell>
+                ) : (
+                  <TableCell>
+                    {" "}
+                    <span className="text-sm font-semibold"> </span>{" "}
+                  </TableCell>
+                )}
 
             <TableCell className="text-center">
               <ShowHideButton id={coupon._id} status={coupon.status} />
@@ -127,20 +131,22 @@ const CouponTable = ({ lang, isCheck, coupons, setIsCheck }) => {
             <TableCell>
               <span className="text-sm">
                 {/* {dayjs(coupon.startTime).format("MMM D, YYYY")} */}
-                {showDateFormat(
+                {/* {showDateFormat(
                   coupon.startTime,
                   globalSetting?.default_date_format
-                )}
+                )} */}
+                {coupon.createdAt}
               </span>
             </TableCell>
 
             <TableCell>
               <span className="text-sm">
                 {/* {dayjs(coupon.endTime).format("MMM D, YYYY")} */}
-                {showDateFormat(
+                {/* {showDateFormat(
                   coupon.endTime,
                   globalSetting?.default_date_format
-                )}
+                )} */}
+                {coupon.updatedAt}
               </span>
             </TableCell>
 
@@ -158,7 +164,8 @@ const CouponTable = ({ lang, isCheck, coupons, setIsCheck }) => {
                 isCheck={isCheck}
                 handleUpdate={handleUpdate}
                 handleModalOpen={handleModalOpen}
-                title={showingTranslateValue(coupon?.title, lang)}
+                // title={showingTranslateValue(coupon?.title, lang)}
+                title={coupon.title}
               />
             </TableCell>
           </TableRow>

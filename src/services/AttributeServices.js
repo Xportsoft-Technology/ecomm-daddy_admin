@@ -8,23 +8,34 @@ const AttributeServices = {
   },
 
   getShowingAttributes: async (body) => {
-    return requests.get('/attributes/show', body);
+    // return requests.get('/attributes/show', body);
+    // return { type: '1', option: '1', option1: '1' };
+    return {};
+
   },
 
   addAttribute: async (body) => {
-    return requests.post('/attributes/add', body);
+    // return requests.post('/attributes/add', body);
+    return {};
+
   },
 
   addChildAttribute: async (id, body) => {
-    return requests.put(`/attributes/add/child/${id}`, body);
+    // return requests.put(`/attributes/add/child/${id}`, body);
+    return {};
+
   },
 
   addAllAttributes: async (body) => {
-    return requests.post('/attributes/add/all', body);
+    // return requests.post('/attributes/add/all', body);
+    return {};
+
   },
 
   getAttributeById: async (id) => {
-    return requests.get(`/attributes/${id}`);
+    // return requests.get(`/attributes/${id}`);
+    return {};
+
   },
 
   getChildAttributeById: async ({ id, ids }) => {

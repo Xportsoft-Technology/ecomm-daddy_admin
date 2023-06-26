@@ -11,9 +11,9 @@ import ShowHideButton from "components/table/ShowHideButton";
 import Tooltip from "components/tooltip/Tooltip";
 import EditDeleteButton from "components/table/EditDeleteButton";
 import DeleteModal from "components/modal/DeleteModal";
-import { showingTranslateValue } from "utils/translate";
+// import { showingTranslateValue } from "utils/translate";
 
-const AttributeTable = ({ lang, isCheck, setIsCheck, attributes }) => {
+const AttributeTable = ({ isCheck, setIsCheck, attributes }) => {
   const { title, serviceId, handleModalOpen, handleUpdate } = useToggleDrawer();
 
   const handleClick = (e) => {
@@ -32,7 +32,7 @@ const AttributeTable = ({ lang, isCheck, setIsCheck, attributes }) => {
 
       {isCheck.length < 2 && (
         <MainDrawer>
-          <AttributeDrawer id={serviceId} />
+          {/* <AttributeDrawer id={serviceId} /> */}
         </MainDrawer>
       )}
 
@@ -50,15 +50,17 @@ const AttributeTable = ({ lang, isCheck, setIsCheck, attributes }) => {
             </TableCell>
 
             <TableCell className="font-semibold uppercase text-xs">
-              {attribute?._id?.substring(20, 24)}
+              {attribute?._id?.substring(0, 6)}
             </TableCell>
 
             <TableCell className="font-medium text-sm">
-              {showingTranslateValue(attribute.title, lang)}
+              {/* {showingTranslateValue(attribute.title, lang)} */}
+              {attribute.title}
             </TableCell>
 
             <TableCell className="font-medium text-sm">
-              {showingTranslateValue(attribute.name, lang)}
+              {/* {showingTranslateValue(attribute.name, lang)} */}
+              {attribute.name}
             </TableCell>
 
             <TableCell className="font-medium text-sm">
@@ -90,7 +92,8 @@ const AttributeTable = ({ lang, isCheck, setIsCheck, attributes }) => {
                 setIsCheck={setIsCheck}
                 handleUpdate={handleUpdate}
                 handleModalOpen={handleModalOpen}
-                title={showingTranslateValue(attribute.title, lang)}
+                title={attribute.title}
+              // title={showingTranslateValue(attribute.title, lang)}
               />
             </TableCell>
           </TableRow>
