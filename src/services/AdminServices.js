@@ -1,4 +1,4 @@
-import requests from "./httpService";
+// import requests from "./httpService";
 
 
 // Static Data getting

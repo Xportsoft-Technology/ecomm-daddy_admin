@@ -3,29 +3,29 @@ import requests from "./httpService";
 const CategoryServices = {
   getAllCategory: async () => {
     // return requests.get("/category");
-    return {}
+    return []
   },
 
   getAllCategories: async () => {
     // return requests.get("/category/all");
-    return {};
+    return [];
   },
 
   getCategoryById: async (id) => {
     // return requests.get(`/category/${id}`);
-    return {};
+    return [];
 
   },
 
   addCategory: async (body) => {
     // return requests.post("/category/add", body);
-    return {};
+    return [];
 
   },
 
   addAllCategory: async (body) => {
     // return requests.post("/category/add/all", body);
-    return {};
+    return [];
 
   },
 
@@ -43,13 +43,13 @@ const CategoryServices = {
 
   updateManyCategory: async (body) => {
     // return requests.patch("/category/update/many", body);
-    return {};
+    return [];
 
   },
 
   deleteManyCategory: async (body) => {
     // return requests.patch("/category/delete/many", body);
-    return {};
+    return [];
 
   },
 };

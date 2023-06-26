@@ -1,34 +1,34 @@
 import { Avatar, TableBody, TableCell, TableRow } from "@windmill/react-ui";
 import React from "react";
 import useToggleDrawer from "hooks/useToggleDrawer";
-import StaffDrawer from "components/drawer/StaffDrawer";
-import DeleteModal from "components/modal/DeleteModal";
+// import StaffDrawer from "components/drawer/StaffDrawer";
+// import DeleteModal from "components/modal/DeleteModal";
 import ActiveInActiveButton from "components/table/ActiveInActiveButton";
 import EditDeleteButton from "components/table/EditDeleteButton";
 import Status from "components/table/Status";
 import MainDrawer from "components/drawer/MainDrawer";
 import { showingTranslateValue } from "utils/translate";
-import useFilter from "hooks/useFilter";
-import { showDateFormat } from "utils/dateFormate";
+// import useFilter from "hooks/useFilter";
+// import { showDateFormat } from "utils/dateFormate";
 
 const StaffTable = ({ staffs, lang }) => {
   const {
-    title,
-    serviceId,
+    // title,
+    // serviceId,
     handleModalOpen,
     handleUpdate,
     isSubmitting,
     handleResetPassword,
   } = useToggleDrawer();
 
-  const { globalSetting } = useFilter();
+  // const { globalSetting } = useFilter();
 
   return (
     <>
-      <DeleteModal id={serviceId} title={title} />
+      {/* <DeleteModal id={serviceId} title={title} /> */}
 
       <MainDrawer>
-        <StaffDrawer id={serviceId} />
+        {/* <StaffDrawer id={serviceId} /> */}
       </MainDrawer>
 
       <TableBody>
@@ -59,10 +59,11 @@ const StaffTable = ({ staffs, lang }) => {
             <TableCell>
               <span className="text-sm">
                 {/* {dayjs(staff.joiningData).format("DD/MM/YYYY")} */}
-                {showDateFormat(
+                {/* {showDateFormat(
                   staff.joiningData,
                   globalSetting.default_date_format
-                )}
+                )} */}
+                {staff.joiningData}
               </span>
             </TableCell>
             <TableCell>
@@ -89,7 +90,8 @@ const StaffTable = ({ staffs, lang }) => {
                 handleUpdate={handleUpdate}
                 handleModalOpen={handleModalOpen}
                 handleResetPassword={handleResetPassword}
-                title={showingTranslateValue(staff?.name, lang)}
+                title={staff.name}
+              // title={showingTranslateValue(staff?.name, lang)}
               />
             </TableCell>
           </TableRow>

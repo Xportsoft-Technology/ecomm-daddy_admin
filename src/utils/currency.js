@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-unused-expressions
-[
+const currencies = [
   { cc: "AED", symbol: "\u062f.\u0625;", name: "UAE dirham" },
   { cc: "AFN", symbol: "Afs", name: "Afghan afghani" },
   { cc: "ALL", symbol: "L", name: "Albanian lek" },
@@ -161,3 +161,4 @@
   { cc: "ZMK", symbol: "ZK", name: "Zambian kwacha" },
   { cc: "ZWR", symbol: "Z$", name: "Zimbabwean dollar" },
 ];
+export default currencies;

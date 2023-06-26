@@ -2,15 +2,18 @@ import requests from './httpService';
 
 const LanguageServices = {
   getAllLanguages: async () => {
-    return requests.get('/language/all');
+    // return requests.get('/language/all');
+    return []
   },
 
   getShowingLanguage: async () => {
-    return requests.get('/language/show');
+    // return requests.get('/language/show');
+    return []
   },
 
   getLanguageById: async (id) => {
-    return requests.get(`/language/${id}`);
+    // return requests.get(`/language/${id}`);
+    return []
   },
 
   addLanguage: async (body) => {

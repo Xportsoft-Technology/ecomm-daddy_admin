@@ -11,47 +11,45 @@ import {
   TableFooter,
   TableHeader,
 } from "@windmill/react-ui";
-import { useContext, useRef } from "react";
+import { useContext } from "react";
 import { useTranslation } from "react-i18next";
 import { FiPlus } from "react-icons/fi";
 
 //internal import
 
-import useAsync from "hooks/useAsync";
-// import useFilter from "hooks/useFilter";
+// import useAsync from "hooks/useAsync";
+import useFilter from "hooks/useFilter";
 import MainDrawer from "components/drawer/MainDrawer";
 // import StaffDrawer from "components/drawer/StaffDrawer";
 import TableLoading from "components/preloader/TableLoading";
-// import StaffTable from "components/staff/StaffTable";
+import StaffTable from "components/staff/StaffTable";
 import NotFound from "components/table/NotFound";
 import PageTitle from "components/Typography/PageTitle";
 import { AdminContext } from "context/AdminContext";
 import { SidebarContext } from "context/SidebarContext";
+import adminData from "utils/staff";
 // import AdminServices from "services/AdminServices";
 
 const Staff = () => {
   const { state } = useContext(AdminContext);
-  const { adminInfo } = state;
+  // const { adminInfo } = state;
   const { toggleDrawer, lang } = useContext(SidebarContext);
 
   // const { data, loading } = useAsync(() => AdminServices.getAllStaff({ email: ('adminInfo.email') }));
+  const data = adminData;
   const loading = false
 
-  // const {
-  //   userRef,
-  //   setRole,
-  //   handleChangePage,
-  //   totalResults,
-  //   resultsPerPage,
-  //   dataTable,
-  //   serviceData,
-  //   handleSubmitUser,
-  // } = useFilter(data);
+  const {
+    userRef,
+    setRole,
+    handleChangePage,
+    totalResults,
+    resultsPerPage,
+    dataTable,
+    serviceData,
+    handleSubmitUser,
+  } = useFilter(data);
 
-  const userRef = useRef();
-  const handleChangePage = () => { }
-  const handleSubmitUser = () => { }
-  const setRole = () => { }
 
   const { t } = useTranslation();
 
@@ -126,18 +124,12 @@ const Staff = () => {
                 </tr>
               </TableHeader>
 
-              {/* <StaffTable staffs={dataTable} lang={lang} /> */}
+              <StaffTable staffs={data} lang={lang} />
             </Table>
             <TableFooter>
-              {/* <Pagination
-              totalResults={totalResults}
-              resultsPerPage={resultsPerPage}
-              onChange={handleChangePage}
-              label="Table navigation"
-            /> */}
               <Pagination
-                totalResults={10}
-                resultsPerPage={2}
+                totalResults={totalResults}
+                resultsPerPage={resultsPerPage}
                 onChange={handleChangePage}
                 label="Table navigation"
               />

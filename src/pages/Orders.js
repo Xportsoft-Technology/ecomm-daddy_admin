@@ -18,7 +18,7 @@ import { useTranslation } from "react-i18next";
 import exportFromJSON from "export-from-json";
 
 //internal import
-import useAsync from "hooks/useAsync";
+// import useAsync from "hooks/useAsync";
 import useFilter from "hooks/useFilter";
 import OrderServices from "services/OrderServices";
 import NotFound from "components/table/NotFound";
@@ -41,7 +41,7 @@ const Orders = () => {
     setStatus,
     handleChangePage,
     handleSubmitForAll,
-    resultsPerPage,
+    // resultsPerPage,
     // startDate,
     setStartDate,
     // endDate,

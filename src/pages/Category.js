@@ -10,17 +10,17 @@ import {
   TableFooter,
   TableHeader,
 } from "@windmill/react-ui";
-import { useContext, useRef, useState } from "react";
+import { useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { FiEdit, FiPlus, FiTrash2 } from "react-icons/fi";
 
 //internal import
 
-import useAsync from "hooks/useAsync";
+// import useAsync from "hooks/useAsync";
 import { SidebarContext } from "context/SidebarContext";
-import CategoryServices from "services/CategoryServices";
+// import CategoryServices from "services/CategoryServices";
 import useToggleDrawer from "hooks/useToggleDrawer";
-// import useFilter from "hooks/useFilter";
+import useFilter from "hooks/useFilter";
 // import DeleteModal from "components/modal/DeleteModal";
 // import BulkActionDrawer from "components/drawer/BulkActionDrawer";
 import PageTitle from "components/Typography/PageTitle";
@@ -30,33 +30,35 @@ import MainDrawer from "components/drawer/MainDrawer";
 import SwitchToggleChildCat from "components/form/SwitchToggleChildCat";
 import TableLoading from "components/preloader/TableLoading";
 import CheckBox from "components/form/CheckBox";
-// import CategoryTable from "components/category/CategoryTable";
+import CategoryTable from "components/category/CategoryTable";
 import NotFound from "components/table/NotFound";
+import categoryData from "utils/categories";
 
 const Category = () => {
   const { toggleDrawer, lang } = useContext(SidebarContext);
 
   // const { data, loading } = useAsync(CategoryServices.getAllCategory);
   // const { data: getAllCategories } = useAsync(CategoryServices.getAllCategories);
+  const data = categoryData;
 
   const { handleDeleteMany, allId, handleUpdateMany, serviceId } = useToggleDrawer();
 
   const { t } = useTranslation();
 
-  // const {
-  //   handleSubmitCategory,
-  //   categoryRef,
-  //   totalResults,
-  //   resultsPerPage,
-  //   dataTable,
-  //   serviceData,
-  //   handleChangePage,
-  //   // filename,
-  //   // isDisabled,
-  //   // handleSelectFile,
-  //   // handleUploadMultiple,
-  //   // handleRemoveSelectFile,
-  // } = useFilter(data[0]?.children ? data[0]?.children : data);
+  const {
+    handleSubmitCategory,
+    categoryRef,
+    totalResults,
+    resultsPerPage,
+    // dataTable,
+    // serviceData,
+    handleChangePage,
+    // filename,
+    // isDisabled,
+    // handleSelectFile,
+    // handleUploadMultiple,
+    // handleRemoveSelectFile,
+  } = useFilter(data);
 
   // react hooks
   const [isCheckAll, setIsCheckAll] = useState(false);
@@ -71,9 +73,9 @@ const Category = () => {
       setIsCheck([]);
     }
   };
-  const handleSubmitCategory = () => { };
-  const categoryRef = useRef();
-  const handleChangePage = () => { };
+  // const handleSubmitCategory = () => { };
+  // const categoryRef = useRef();
+  // const handleChangePage = () => { };
 
   return (
     <>
@@ -197,29 +199,29 @@ const Category = () => {
                   </tr>
                 </TableHeader>
 
-                {/* <CategoryTable
-              data={data}
-              lang={lang}
-              isCheck={isCheck}
-              categories={dataTable}
-              setIsCheck={setIsCheck}
-              showChild={showChild}
-            /> */}
+                <CategoryTable
+                  data={data}
+                  lang={lang}
+                  isCheck={isCheck}
+                  categories={data}
+                  setIsCheck={setIsCheck}
+                  showChild={showChild}
+                />
               </Table>
 
               <TableFooter>
-                {/* <Pagination
-              totalResults={totalResults}
-              resultsPerPage={resultsPerPage}
-              onChange={handleChangePage}
-              label="Table navigation"
-            /> */}
                 <Pagination
+                  totalResults={totalResults}
+                  resultsPerPage={resultsPerPage}
+                  onChange={handleChangePage}
+                  label="Table navigation"
+                />
+                {/* <Pagination
                   totalResults={10}
                   resultsPerPage={2}
                   onChange={handleChangePage}
                   label="Table navigation"
-                />
+                /> */}
               </TableFooter>
             </TableContainer>
           ) : (

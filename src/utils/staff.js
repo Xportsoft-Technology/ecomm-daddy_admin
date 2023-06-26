@@ -10,6 +10,7 @@ const admins = [
     joiningData: '2021-11-25T11:46:54.266Z',
     createdAt: '2021-11-25T11:47:02.762Z',
     updatedAt: '2021-11-25T11:47:02.762Z',
+    status: "Not Active"
   },
   {
     _id: '619f77b653cc5a1858ef367a',
@@ -22,6 +23,7 @@ const admins = [
     joiningData: '2021-11-25T11:46:54.384Z',
     createdAt: '2021-11-25T11:47:02.763Z',
     updatedAt: '2021-11-25T11:47:02.763Z',
+    status: 'Not Active'
   },
   {
     _id: '619f77b653cc5a1858ef367b',
@@ -34,6 +36,7 @@ const admins = [
     joiningData: '2021-11-25T11:46:54.503Z',
     createdAt: '2021-11-25T11:47:02.763Z',
     updatedAt: '2021-11-25T11:47:02.763Z',
+    status: 'Active'
   },
   {
     _id: '619f77b653cc5a1858ef367c',
@@ -46,6 +49,7 @@ const admins = [
     joiningData: '2021-11-25T11:46:54.622Z',
     createdAt: '2021-11-25T11:47:02.763Z',
     updatedAt: '2021-11-25T11:47:02.763Z',
+    status: 'Not Active'
   },
   {
     _id: '619f77b653cc5a1858ef367d',
@@ -58,6 +62,7 @@ const admins = [
     joiningData: '2021-11-25T11:46:54.739Z',
     createdAt: '2021-11-25T11:47:02.763Z',
     updatedAt: '2021-11-25T11:47:02.763Z',
+    status: 'Active'
   },
   {
     _id: '619f77b653cc5a1858ef367e',
@@ -70,6 +75,7 @@ const admins = [
     joiningData: '2021-11-25T11:46:54.857Z',
     createdAt: '2021-11-25T11:47:02.764Z',
     updatedAt: '2021-11-25T11:47:02.764Z',
+    status: 'Not Active'
   },
   {
     _id: '619f77b653cc5a1858ef367f',
@@ -82,6 +88,7 @@ const admins = [
     joiningData: '2021-11-25T11:46:54.976Z',
     createdAt: '2021-11-25T11:47:02.764Z',
     updatedAt: '2021-11-25T11:47:02.764Z',
+    status: 'loggedIn'
   },
   {
     _id: '619f77b653cc5a1858ef3680',
@@ -94,6 +101,7 @@ const admins = [
     joiningData: '2021-11-25T11:46:55.094Z',
     createdAt: '2021-11-25T11:47:02.764Z',
     updatedAt: '2021-11-25T11:47:02.764Z',
+    status: 'Not Active'
   },
 ];
 

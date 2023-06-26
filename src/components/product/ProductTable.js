@@ -72,10 +72,14 @@ const ProductTable = ({ products, isCheck, setIsCheck, currency, lang }) => {
                 )}
                 <div>
                   <h2 className="text-sm font-medium">
-                    {showingTranslateValue(product?.title, lang)?.substring(
+                    {/* {showingTranslateValue(product?.title, lang)?.substring(
                       0,
                       28
-                    )}
+                    )} */}
+                    {product.title.substring(
+                      0,
+                      15
+                    )}...
                   </h2>
                 </div>
               </div>
@@ -91,19 +95,19 @@ const ProductTable = ({ products, isCheck, setIsCheck, currency, lang }) => {
             <TableCell>
               <span className="text-sm font-semibold">
                 {currency}
-                {Number(product?.prices?.originalPrice).toFixed(2)}
+                {Number(product?.originalPrice).toFixed(2)}
               </span>
             </TableCell>
 
             <TableCell>
               <span className="text-sm font-semibold">
                 {currency}
-                {Number(product?.prices?.price).toFixed(2)}
+                {Number(product?.price).toFixed(2)}
               </span>
             </TableCell>
 
             <TableCell>
-              <span className="text-sm">{product.stock}</span>
+              <span className="text-sm">{product.quantity}</span>
             </TableCell>
             <TableCell>
               {product.stock > 0 ? (
