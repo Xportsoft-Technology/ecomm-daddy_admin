@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 const OrderTable = ({ orders, currency, globalSetting }) => {
   // console.log('globalSetting',globalSetting)
   const { t } = useTranslation();
-  // console.log('orders',orders)
+  console.log('orders:=>', orders)
 
   return (
     <>
@@ -20,7 +20,8 @@ const OrderTable = ({ orders, currency, globalSetting }) => {
           <TableRow key={i + 1}>
             <TableCell>
               <span className="font-semibold uppercase text-xs">
-                {order?.invoice}
+                {/* {order?.invoice} */}
+                {order?._id.slice(0, 5)}
               </span>
             </TableCell>
 
@@ -31,12 +32,14 @@ const OrderTable = ({ orders, currency, globalSetting }) => {
                   globalSetting?.default_date_format,
                   "h:mm A"
                 )} */}
-                16/08/2023 - 2:43 PM
+                {order?.updatedDate}
+
               </span>
             </TableCell>
 
             <TableCell className="text-xs">
-              <span className="text-sm">{order?.user_info?.name}</span>{" "}
+              {/* <span className="text-sm">{order?.user_info?.name}</span>{" "} */}
+              <span className="text-sm">{order?.name}</span>{" "}
             </TableCell>
 
             <TableCell>
@@ -53,8 +56,8 @@ const OrderTable = ({ orders, currency, globalSetting }) => {
             </TableCell>
 
             <TableCell className="text-xs">
-              {/* <Status status={order?.status || 'pending'} /> */}
-              <Status status={"Pending"} />
+              <Status status={order?.status || 'pending'} />
+              {/* <Status status={"Pending"} /> */}
 
             </TableCell>
 
@@ -64,8 +67,8 @@ const OrderTable = ({ orders, currency, globalSetting }) => {
 
             <TableCell className="text-right flex justify-end">
               <div className="flex justify-between items-center">
-                {/* <PrintReceipt orderId={order._id} /> */}
-                <PrintReceipt orderId={1} />
+                <PrintReceipt orderId={order._id} />
+                {/* <PrintReceipt orderId={1} /> */}
 
                 <span className="p-2 cursor-pointer text-gray-400 hover:text-green-600">
                   <Link to={`/order/${order._id}`}>

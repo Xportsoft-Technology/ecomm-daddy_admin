@@ -28,6 +28,7 @@ import OrderTable from "components/order/OrderTable";
 import TableLoading from "components/preloader/TableLoading";
 import { notifyError } from "utils/toast";
 import spinnerLoadingImage from "assets/img/spinner.gif";
+import orderData from "utils/orders";
 
 const Orders = () => {
   const {
@@ -51,17 +52,18 @@ const Orders = () => {
   const { t } = useTranslation();
   const [loadingExport, setLoadingExport] = useState(false);
 
-  const { data, loading } = useAsync(() =>
-    OrderServices.getAllOrders({
-      // customerName: searchText,
-      // status,
-      // page: currentPage,
-      // limit: resultsPerPage,
-      // day: time,
-      // startDate,
-      // endDate,
-    })
-  );
+  // const { data, loading } = useAsync(() =>
+  //   OrderServices.getAllOrders({
+  //     // customerName: searchText,
+  //     // status,
+  //     // page: currentPage,
+  //     // limit: resultsPerPage,
+  //     // day: time,
+  //     // startDate,
+  //     // endDate,
+  //   })
+  // );
+  const data = { orders: orderData };
 
   const { dataTable, serviceData, globalSetting } = useFilter(data?.orders);
 
@@ -215,44 +217,56 @@ const Orders = () => {
         </CardBody>
       </Card>
 
-      {loading ? (
-        <TableLoading row={12} col={7} width={160} height={20} />
-      ) : serviceData?.length !== 0 ? (
-        <TableContainer className="mb-8 dark:bg-gray-900">
-          <Table>
-            <TableHeader>
-              <tr>
-                <TableCell>{t("InvoiceNo")}</TableCell>
-                <TableCell>{t("TimeTbl")}</TableCell>
-                <TableCell>{t("CustomerName")}</TableCell>
-                <TableCell>{t("MethodTbl")}</TableCell>
-                <TableCell>{t("AmountTbl")}</TableCell>
-                <TableCell>{t("OderStatusTbl")}</TableCell>
-                <TableCell>{t("ActionTbl")}</TableCell>
-                <TableCell className="text-right">{t("InvoiceTbl")}</TableCell>
-              </tr>
-            </TableHeader>
+      {
+        // loading
+        false
+          ? (
+            <TableLoading row={12} col={7} width={160} height={20} />
+          ) :
+          //  serviceData?.length !== 0 
+          true
+            ? (
+              <TableContainer className="mb-8 dark:bg-gray-900">
+                <Table>
+                  <TableHeader>
+                    <tr>
+                      <TableCell>{t("InvoiceNo")}</TableCell>
+                      <TableCell>{t("TimeTbl")}</TableCell>
+                      <TableCell>{t("CustomerName")}</TableCell>
+                      <TableCell>{t("MethodTbl")}</TableCell>
+                      <TableCell>{t("AmountTbl")}</TableCell>
+                      <TableCell>{t("OderStatusTbl")}</TableCell>
+                      <TableCell>{t("ActionTbl")}</TableCell>
+                      <TableCell className="text-right">{t("InvoiceTbl")}</TableCell>
+                    </tr>
+                  </TableHeader>
 
-            <OrderTable
-              lang={lang}
-              orders={dataTable}
-              globalSetting={globalSetting}
-              currency={globalSetting?.default_currency || "$"}
-            />
-          </Table>
+                  <OrderTable
+                    lang={lang}
+                    orders={dataTable}
+                    globalSetting={globalSetting}
+                    currency={globalSetting?.default_currency || "$"}
+                  />
+                </Table>
 
-          <TableFooter>
-            <Pagination
-              totalResults={data?.totalDoc}
-              resultsPerPage={resultsPerPage}
-              onChange={handleChangePage}
-              label="Table navigation"
-            />
-          </TableFooter>
-        </TableContainer>
-      ) : (
-        <NotFound title="Sorry, There are no orders right now." />
-      )}
+                <TableFooter>
+                  <Pagination
+                    totalResults={data?.orders.length}
+                    resultsPerPage={2}
+                    onChange={handleChangePage}
+                    label="Table navigation"
+                  />
+                  {/* <Pagination
+                    totalResults={data?.totalDoc}
+                    resultsPerPage={resultsPerPage}
+                    onChange={handleChangePage}
+                    label="Table navigation"
+                  /> */}
+                </TableFooter>
+              </TableContainer>
+            ) : (
+              <NotFound title="Sorry, There are no orders right now." />
+            )}
     </>
   );
 };
